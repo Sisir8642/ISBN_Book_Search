@@ -25,7 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://isbn-book-search-sgz0.onrender.com']
+ALLOWED_HOSTS = ['isbn-book-search-sgz0.onrender.com']
 OPENLIBRARY_BASE_URL = config('OPENLIBRARY_BASE_URL')
 
 # Application definition
