@@ -11,26 +11,27 @@ export default function Home() {
   const [error, setError] = useState<string>("");
 
   const handleSearch = async () => {
-    setError("");
-    setBook(null);
+  setError("");
+  setBook(null);
 
-    const trimmedIsbn = isbn.trim().replace(/[^0-9Xx]/g, "");
-    if (!trimmedIsbn) {
-      setError("Please enter a valid ISBN");
-      return;
-    }
+  const trimmedIsbn = isbn.trim().replace(/[^0-9Xx]/g, ""); 
+  if (!trimmedIsbn) {
+    setError("Please enter a valid ISBN");
+    return;
+  }
 
-    try {
-      const data = await fetchBookByISBN(trimmedIsbn);
-      setBook(data);
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message || "Failed to fetch book");
-      } else {
-        setError("Unexpected error occurred");
-      }
+  try {
+    const data = await fetchBookByISBN(trimmedIsbn);
+    setBook(data);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      setError(err.message || "Failed to fetch book");
+    } else {
+      setError("Unexpected error occurred");
     }
-  };
+  }
+};
+
 
 
   return (
