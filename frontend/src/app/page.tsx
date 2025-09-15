@@ -13,8 +13,15 @@ export default function Home() {
   const handleSearch = async () => {
     setError("");
     setBook(null);
+
+    const trimmedIsbn = isbn.trim().replace(/[^0-9Xx]/g, "");
+    if (!trimmedIsbn) {
+      setError("Please enter a valid ISBN");
+      return;
+    }
+
     try {
-      const data = await fetchBookByISBN(isbn);
+      const data = await fetchBookByISBN(trimmedIsbn);
       setBook(data);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -24,6 +31,7 @@ export default function Home() {
       }
     }
   };
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 via-purple-50 to-blue-50 p-6">

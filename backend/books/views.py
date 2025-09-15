@@ -9,7 +9,6 @@ class BookAPIView(APIView):
         if not isbn:
             return Response({"error": "ISBN parameter is required"}, status=400)
 
-        # Read the base URL from config
         base_url = config('OPENLIBRARY_BASE_URL', default='https://openlibrary.org/api/books')
         url = f"{base_url}?bibkeys=ISBN:{isbn}&format=json&jscmd=data"
         resp = requests.get(url)
